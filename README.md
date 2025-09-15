@@ -65,16 +65,16 @@ After setup, you can simply edit the `.env` file and run the `scripts/build.ps1`
    ```
 3. Build:
    ```powershell
-   pwsh .\scriptsuild.ps1 -a
+   pwsh .\scripts/build.ps1 -a
    ```
    Clean/pristine build:
    ```powershell
-   pwsh .\scriptsuild.ps1 -c -a
+   pwsh .\scripts/build.ps1 -c -a
    ```
 
 **Change board/overlay:**
 ```powershell
-pwsh .\scriptsuild.ps1 -b nucleo_f070rb -dto boards
+pwsh .\scripts/build.ps1 -b nucleo_f070rb -dto boards
 ucleo_f070rb.overlay -a
 ```
 
