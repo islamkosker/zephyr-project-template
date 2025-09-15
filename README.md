@@ -54,8 +54,8 @@ After setup, you can simply edit the `.env` file and run the `scripts/build.ps1`
 1. **Prerequisites:** Python + venv, Zephyr + west, Zephyr SDK, CMake, Ninja.  
 2. Edit your `scripts/.env`:
    ```ini
-   BOARD=nucleo_f070rb
-   DT_OVERLAY=boards/nucleo_f070rb.overlay
+   BOARD=nucleo_f070rb # change your board 
+   DT_OVERLAY=boards/nucleo_f070rb.overlay # change your board 
    BUILD_DIR=.build
    CLEAN=0
    ACTIVATE=1
@@ -65,18 +65,12 @@ After setup, you can simply edit the `.env` file and run the `scripts/build.ps1`
    ```
 3. Build:
    ```powershell
-   pwsh .\scripts/build.ps1 -a
+   pwsh .\scripts\build.ps1 -a
    ```
    Clean/pristine build:
    ```powershell
-   pwsh .\scripts/build.ps1 -c -a
+   pwsh .\scripts\build.ps1 -c -a
    ```
-
-**Change board/overlay:**
-```powershell
-pwsh .\scripts/build.ps1 -b nucleo_f070rb -dto boards
-ucleo_f070rb.overlay -a
-```
 
 ---
 
