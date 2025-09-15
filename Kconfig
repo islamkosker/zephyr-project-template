@@ -1,0 +1,13 @@
+# Copyright (c) 2019 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+menu "App options"
+config APP_DEV_BUILD
+	bool "Enable development build features"
+config APP_LOG_WITH_FILELINE
+	bool "Include file:line in logs"
+endmenu
+
+
+
+source "Kconfig.zephyr"
