@@ -1,5 +1,5 @@
 {
     "C_Cpp.default.compileCommands": "${workspaceFolder}/.build/compile_commands.json",
-    "C_Cpp.default.compilerPath": "C:/Users/Admin/Developer/sdk/zephyr/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe",
+    "C_Cpp.default.compilerPath": "C:/Users/Admin/Developer/sdk/zephyr/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe", // update for your toolchain path
     
 }
