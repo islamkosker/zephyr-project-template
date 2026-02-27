@@ -97,8 +97,7 @@ function Deactivate-Env {
 function Activate-Env {
   param([string]$ProjectRoot,[string]$ZephyrBase)
   $projectVenv = Join-Path $ProjectRoot ".venv\Scripts\Activate.ps1"
-  $zephyrVenv  = Join-Path (Join-Path $ZephyrBase "..\.venv\Scripts") "Activate.ps1"
-
+  
   # remember PATH before any change
   $script:SavedPath = $env:PATH
 
@@ -108,22 +107,23 @@ function Activate-Env {
     $script:EnvMode = 'venv'
     return
   }
-  if (Test-Path $zephyrVenv)  {
-    Write-Info "Activating Zephyr venv: $zephyrVenv"
-    . $zephyrVenv
-    $script:EnvMode = 'venv'
-    return
+  
+  # Only try zephyr venv if ZephyrBase is provided and valid
+  if ($ZephyrBase -and (Test-Path $ZephyrBase)) {
+    # ZephyrBase points to zephyrproject/zephyr, so parent is zephyrproject
+    $zephyrProjectRoot = (Resolve-Path (Join-Path $ZephyrBase "..\")).Path
+    $zephyrVenv = Join-Path $zephyrProjectRoot ".venv\Scripts\Activate.ps1"
+    
+    if (Test-Path $zephyrVenv) {
+      Write-Info "Activating Zephyr venv: $zephyrVenv"
+      . $zephyrVenv
+      $script:EnvMode = 'venv'
+      return
+    }
   }
-  # no venv: try PATH add for west
-  $westScripts = Split-Path $zephyrVenv -Parent
-  if ((Test-Path $westScripts) -and ($env:PATH -notlike "*$westScripts*")) {
-    Write-Warn "Venv not found; adding west scripts to PATH: $westScripts"
-    $env:PATH = "$westScripts;$env:PATH"
-    $script:EnvMode = 'path'
-  } else {
-    Write-Warn "No venv found to activate."
-    $script:EnvMode = $null
-  }
+  
+  Write-Warn "No venv found to activate."
+  $script:EnvMode = $null
 }
 
 function Exit-Fail([string]$msg, [int]$code=1){
